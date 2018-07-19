@@ -15,17 +15,13 @@
     <select id="videoSource"></select>
     <input type="range" min="11.0" max="18.9" value="15" class="slider" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
     <div id="videoBox">
-      <video class="video-js vjs-default-skin" id="video" width="1200px"  height="800px" playsinline autoplay></video>
-      <!--<canvas id="canvas"></canvas>-->
+      <video class="video-js vjs-default-skin" id="video" width="1200px"  height="800px" playsinline autoplay data-setup='{}'></video>
+      <canvas id="canvas"></canvas>
       <div id="videoControls">
         <!--<button id="playpausebtn" onclick="playPause(this, 'video')">Pause</button>-->
         <div id="floatWindow" class="d-sm-flex align-items-stretch flex-row bd-highlight mb-3 bg-dark justify-content-start">
           <!---------------------------------------------------------two direction------------------------------------------------------------------------->
           <div class="p-2 bd-highlight">
-            <!--<div class="vertical-direction bg-secondary">-->
-              <!--<div class="direction_div top_direction"><i class="fas fa-sort-up fa-3x"></i></div>-->
-              <!--<div class="direction_div bottom_direction"><i class="fas fa-sort-down fa-3x"></i></div>-->
-            <!--</div>-->
             <input id="z-axis" type="range" min="0" max="100" value="0" step="1">
           </div>
           <!---------------------------------------------------------four direction------------------------------------------------------------------------->
@@ -47,24 +43,11 @@
               </div>
 
               <div class="p-2 bd-highlight flex-fill">
-                <!--<div class="dropright">-->
-                <button class="btn btn-secondary" style="background-color:transparent;border: none;" type="button" data-toggle="collapse" aria-expanded="false" data-target="#pictureSettings" aria-controls="pictureSettings"><i class="fas fa-image"></i></button>
-                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-                <!--<a class="dropdown-item" href="#">white balance</a>-->
-                <!--<a class="dropdown-item" href="#">brightness</a>-->
-                <!--<a class="dropdown-item" href="#">contrast</a>-->
-                <!--</div>-->
-                <!--</div>-->
+                <button class="btn btn-secondary" style="background-color:transparent;border: none;" type="button" id="pictureBtn"><i class="fas fa-image"></i></button>
               </div>
 
               <div class="p-2 bd-highlight flex-fill">
-                <!--<div class="dropright">-->
-                <button class="btn btn-secondary" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="collapse" data-target="#cameraSettings, #pictureSettings" aria-controls="cameraSettings, pictureSettings"><i class="fas fa-camera"></i></button>
-                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-                <!--<a class="dropdown-item" href="#">choose camera</a>-->
-                <!--<a class="dropdown-item" href="#">camera settings</a>-->
-                <!--</div>-->
-                <!--</div>-->
+                <button class="btn btn-secondary" type="button" id="cameraBtn" ><i class="fas fa-camera"></i></button>
               </div>
             </div>
           </div>
