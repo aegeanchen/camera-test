@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="node_modules/video.js/dist/video-js.min.css">
   <title>ADA</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -15,16 +14,16 @@
     <select id="videoSource"></select>
     <input type="range" min="11.0" max="18.9" value="15" class="slider" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
     <div id="videoBox">
-      <video class="video-js vjs-default-skin" id="video" width="1200px"  height="800px" playsinline autoplay data-setup='{}'></video>
+      <video id="video" playsinline autoplay></video>
       <canvas id="canvas"></canvas>
       <div id="videoControls">
         <!--<button id="playpausebtn" onclick="playPause(this, 'video')">Pause</button>-->
         <div id="floatWindow" class="d-sm-flex align-items-stretch flex-row bd-highlight mb-3 bg-dark justify-content-start">
-          <!---------------------------------------------------------two direction------------------------------------------------------------------------->
+          <!-- =============================== two direction =============================== -->
           <div class="p-2 bd-highlight">
             <input id="z-axis" type="range" min="0" max="100" value="0" step="1">
           </div>
-          <!---------------------------------------------------------four direction------------------------------------------------------------------------->
+          <!-- =============================== four direction =============================== -->
           <div class="p-2 bd-highlight">
             <div class="direction bg-secondary align-items-center">
 
@@ -35,7 +34,7 @@
               <div class="direction_div right_direction"><i class="fas fa-caret-right fa-3x"></i></div>
             </div>
           </div>
-          <!---------------------------------------------------------three function------------------------------------------------------------------------->
+          <!-- =============================== three function =============================== -->
           <div class="p-2 bd-highlight">
             <div class="menu d-flex flex-column bd-highlight mb-3 bg-secondary align-items-center">
               <div class="p-2 bd-highlight flex-fill">
@@ -51,7 +50,7 @@
               </div>
             </div>
           </div>
-          <!---------------------------------------------------------picture settings------------------------------------------------------------------------->
+          <!-- =============================== picture settings =============================== -->
           <div class="collapse p-2 bd-highlight" id="pictureSettings">
             <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
               <div class="p-2 bd-highlight" href="#">white balance</div>
@@ -59,7 +58,7 @@
               <div class="p-2 bd-highlight" href="#">contrast</div>
             </div>
           </div>
-          <!---------------------------------------------------------picture settings------------------------------------------------------------------------->
+          <!-- =============================== picture settings =============================== -->
           <div class="collapse p-2 bd-highlight" id="cameraSettings">
             <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
 
@@ -73,8 +72,6 @@
     </div>
   </div>
 
-
-  <script src="node_modules/video.js/dist/video.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
