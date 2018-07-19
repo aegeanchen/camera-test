@@ -1,0 +1,81 @@
+video {
+  /*display:none;*/
+  /* max-width: 100%;
+  height: auto;
+  position: relative;
+  display: inline-block; */
+}
+
+#canvas {
+  /* display:none; */
+
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+}
+
+#canvas2 {
+  display:none;
+
+  /* max-width: 100%;
+  height: auto;
+  position: relative;
+  display: block; */
+}
+
+/* image {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  display: block;
+} */
+
+
+.vertical-direction {
+  position: relative;
+  float: left;
+  height:100px;
+  width:50px;
+}
+.menu {
+  position: relative;
+  height:150px;
+  width:50px;
+
+}
+
+.direction{
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.direction_div{
+  position:relative;
+  /*width: 30px;*/
+  /*height: 30px;*/
+}
+
+/*.direction_div img{*/
+  /*width: 100%;*/
+  /*height:  100%;*/
+/*}*/
+
+
+/*.button {*/
+  /*background-color: Transparent;*/
+  /*background-repeat:no-repeat;*/
+  /*border: none;*/
+  /*cursor:pointer;*/
+  /*overflow: hidden;*/
+  /*outline:none;*/
+/*}*/
+
+#videoControls {
+  background: #333; padding: 10px;
+}
+
+div#videoBox {
+  width:100%; background: black;
+}

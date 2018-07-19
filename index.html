@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="node_modules/video.js/dist/video-js.min.css">
+  <title>ADA</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+
+  <div>
+    <select id="videoSource"></select>
+    <input type="range" min="11.0" max="18.9" value="15" class="slider" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
+    <div id="videoBox">
+      <video class="video-js vjs-default-skin" id="video" width="1200px"  height="800px" playsinline autoplay></video>
+      <!--<canvas id="canvas"></canvas>-->
+      <div id="videoControls">
+        <!--<button id="playpausebtn" onclick="playPause(this, 'video')">Pause</button>-->
+        <div id="floatWindow" class="d-sm-flex align-items-stretch flex-row bd-highlight mb-3 bg-dark justify-content-start">
+          <!---------------------------------------------------------two direction------------------------------------------------------------------------->
+          <div class="p-2 bd-highlight">
+            <!--<div class="vertical-direction bg-secondary">-->
+              <!--<div class="direction_div top_direction"><i class="fas fa-sort-up fa-3x"></i></div>-->
+              <!--<div class="direction_div bottom_direction"><i class="fas fa-sort-down fa-3x"></i></div>-->
+            <!--</div>-->
+            <input id="z-axis" type="range" min="0" max="100" value="0" step="1">
+          </div>
+          <!---------------------------------------------------------four direction------------------------------------------------------------------------->
+          <div class="p-2 bd-highlight">
+            <div class="direction bg-secondary align-items-center">
+
+              <button type="button" class="btn btn-secondary direction_div top_direction align-items-center"><i class="fas fa-sort-up fa-3x"></i></button>
+              <!--<div class="direction_div top_direction"><i class="fas fa-sort-up fa-3x"></i></div>-->
+              <div class="direction_div left_direction"><i class="fas fa-caret-left fa-3x"></i></div>
+              <div class="direction_div bottom_direction"><i class="fas fa-sort-down fa-3x"></i></div>
+              <div class="direction_div right_direction"><i class="fas fa-caret-right fa-3x"></i></div>
+            </div>
+          </div>
+          <!---------------------------------------------------------three function------------------------------------------------------------------------->
+          <div class="p-2 bd-highlight">
+            <div class="menu d-flex flex-column bd-highlight mb-3 bg-secondary align-items-center">
+              <div class="p-2 bd-highlight flex-fill">
+                <button type="button" class="btn btn-secondary btn-small" id="playPauseBtn"><i class="fas fa-play-circle"></i></button>
+              </div>
+
+              <div class="p-2 bd-highlight flex-fill">
+                <!--<div class="dropright">-->
+                <button class="btn btn-secondary" style="background-color:transparent;border: none;" type="button" data-toggle="collapse" aria-expanded="false" data-target="#pictureSettings" aria-controls="pictureSettings"><i class="fas fa-image"></i></button>
+                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+                <!--<a class="dropdown-item" href="#">white balance</a>-->
+                <!--<a class="dropdown-item" href="#">brightness</a>-->
+                <!--<a class="dropdown-item" href="#">contrast</a>-->
+                <!--</div>-->
+                <!--</div>-->
+              </div>
+
+              <div class="p-2 bd-highlight flex-fill">
+                <!--<div class="dropright">-->
+                <button class="btn btn-secondary" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="collapse" data-target="#cameraSettings, #pictureSettings" aria-controls="cameraSettings, pictureSettings"><i class="fas fa-camera"></i></button>
+                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+                <!--<a class="dropdown-item" href="#">choose camera</a>-->
+                <!--<a class="dropdown-item" href="#">camera settings</a>-->
+                <!--</div>-->
+                <!--</div>-->
+              </div>
+            </div>
+          </div>
+          <!---------------------------------------------------------picture settings------------------------------------------------------------------------->
+          <div class="collapse p-2 bd-highlight" id="pictureSettings">
+            <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
+              <div class="p-2 bd-highlight" href="#">white balance</div>
+              <div class="p-2 bd-highlight" href="#">brightness</div>
+              <div class="p-2 bd-highlight" href="#">contrast</div>
+            </div>
+          </div>
+          <!---------------------------------------------------------picture settings------------------------------------------------------------------------->
+          <div class="collapse p-2 bd-highlight" id="cameraSettings">
+            <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
+
+              <div class="p-2 bd-highlight" href="#">choose camera</div>
+              <div class="p-2 bd-highlight" href="#">camera settings</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script src="node_modules/video.js/dist/video.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+</body>
+
+<script src = "cameraInit.js"></script>
+<script src="controlButtons.js"></script>
+<!-- <script src = "canvasVideo.js"></script> -->
+<!-- <script src="gl-matrix.js"></script>
+<script src="webGLGreyscale.js"></script> -->
+
+
+</html>
+
