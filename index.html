@@ -13,65 +13,68 @@
   <div>
     <select id="videoSource"></select>
     <input type="range" min="11.0" max="18.9" value="15" class="slider" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
+
     <div id="videoBox">
       <video id="video" playsinline autoplay></video>
-      <canvas id="canvas"></canvas>
-      <div id="videoControls">
-        <!--<button id="playpausebtn" onclick="playPause(this, 'video')">Pause</button>-->
-        <div id="floatWindow" class="d-sm-flex align-items-stretch flex-row bd-highlight mb-3 bg-dark justify-content-start">
+      <canvas id="canvas" onmouseover="mousein()" onmouseout="mouseout()" onclick="changeText()"></canvas>
+      <!--<h1 onclick="changeText(this)">Click on this text!</h1>-->
+      <div id="videoControls" onmouseover="mousein()" onmouseout="mouseout()">
+        <div id="floatWindow" class="d-sm-flex align-items-stretch flex-row bd-highlight mb-3 justify-content-start">
           <!-- =============================== two direction =============================== -->
           <div class="p-2 bd-highlight">
-            <input id="z-axis" type="range" min="0" max="100" value="0" step="1">
+            <input id="z-axis" type="range" aria-orientation="vertical" min="0" max="100" value="50" step="1">
           </div>
           <!-- =============================== four direction =============================== -->
           <div class="p-2 bd-highlight">
-            <div class="direction bg-secondary align-items-center">
-
-              <button type="button" class="btn btn-secondary direction_div top_direction align-items-center"><i class="fas fa-sort-up fa-3x"></i></button>
-              <!--<div class="direction_div top_direction"><i class="fas fa-sort-up fa-3x"></i></div>-->
-              <div class="direction_div left_direction"><i class="fas fa-caret-left fa-3x"></i></div>
-              <div class="direction_div bottom_direction"><i class="fas fa-sort-down fa-3x"></i></div>
-              <div class="direction_div right_direction"><i class="fas fa-caret-right fa-3x"></i></div>
+            <div class="direction bg-secondary align-items-center bd-highlight">
+              <button class="btn btn-secondary top_direction btn-large"><i class="fas fa-sort-up"></i></button>
+              <button class="btn btn-secondary left_direction btn-large"><i class="fas fa-caret-left"></i></button>
+              <button class="btn btn-secondary bottom_direction btn-large"><i class="fas fa-sort-down"></i></button>
+              <button class="btn btn-secondary right_direction btn-large"><i class="fas fa-caret-right"></i></button>
             </div>
           </div>
           <!-- =============================== three function =============================== -->
           <div class="p-2 bd-highlight">
             <div class="menu d-flex flex-column bd-highlight mb-3 bg-secondary align-items-center">
-              <div class="p-2 bd-highlight flex-fill">
-                <button type="button" class="btn btn-secondary btn-small" id="playPauseBtn"><i class="fas fa-play-circle"></i></button>
-              </div>
-
-              <div class="p-2 bd-highlight flex-fill">
-                <button class="btn btn-secondary" style="background-color:transparent;border: none;" type="button" id="pictureBtn"><i class="fas fa-image"></i></button>
-              </div>
-
-              <div class="p-2 bd-highlight flex-fill">
-                <button class="btn btn-secondary" type="button" id="cameraBtn" ><i class="fas fa-camera"></i></button>
-              </div>
+              <button class="btn btn-secondary btn-small" id="playPauseBtn"><i class="fas fa-play-circle"></i></button>
+              <button class="btn btn-secondary btn-small" id="pictureBtn"><i class="fas fa-image"></i></button>
+              <button class="btn btn-secondary btn-small" id="cameraBtn" ><i class="fas fa-camera"></i></button>
             </div>
           </div>
           <!-- =============================== picture settings =============================== -->
-          <div class="collapse p-2 bd-highlight" id="pictureSettings">
+          <div class="btn-group-vertical p-2 bd-highlight" role="group" aria-label="Basic example" id="pictureSettings">
             <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
-              <div class="p-2 bd-highlight" href="#">white balance</div>
-              <div class="p-2 bd-highlight" href="#">brightness</div>
-              <div class="p-2 bd-highlight" href="#">contrast</div>
+            <button type="button" class="btn btn-secondary">white balance  <input type="range" min="0" max="100" value="50" step="1"></button>
+            <button type="button" class="btn btn-secondary">brightness  <input type="range" min="0" max="100" value="50" step="1"></button>
+            <button type="button" class="btn btn-secondary">contrast  <input type="range" min="0" max="100" value="50" step="1"></button>
             </div>
           </div>
           <!-- =============================== picture settings =============================== -->
-          <div class="collapse p-2 bd-highlight" id="cameraSettings">
+          <!--<div class="collapse p-2 bd-highlight" id="cameraSettings">-->
+            <!--<div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >-->
+              <!--<div class="p-2 bd-highlight" href="#">choose camera</div>-->
+              <!--<div class="p-2 bd-highlight" href="#">camera settings</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="btn-group-vertical p-2 bd-highlight" role="group" aria-label="Basic example" id="cameraSettings">
             <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
-
-              <div class="p-2 bd-highlight" href="#">choose camera</div>
-              <div class="p-2 bd-highlight" href="#">camera settings</div>
+              <button type="button" class="btn btn-secondary">choose camera</button>
+              <button type="button" class="btn btn-secondary">camera settings</button>
             </div>
           </div>
+
+          <div class="p-2 bd-highlight">
+            <div class="output bg-secondary align-items-center bd-highlight">
+              <span class="d-block p-2 text-white" id="textArea1"></span>
+              <span class="d-block p-2 text-white" id="textArea2"></span>
+              <span class="d-block p-2 text-white" id="textArea3"></span>
+            </div>
+          </div>
+
         </div>
-
       </div>
     </div>
   </div>
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
