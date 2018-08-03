@@ -81,7 +81,7 @@ const initDraw = (canvas) => {
     };
     let element = null;
     let endOneDraw = true;
-    let x1, y1, x2, y2, coord1, coord2;
+    let startX, startY, startCoord, endCoord;
 
     // Name: e or event? the style should be uniform
     const setMousePosition = (event) => {
@@ -115,10 +115,10 @@ const initDraw = (canvas) => {
                 console.log('Cleared.');
             }
             console.log("Begin to draw...");
-            coord1 = [event.clientX, event.clientY];
+            startCoord = [event.clientX, event.clientY];
             // deconstructive assignment
-            [x1, y1] = coord1;
-            document.getElementById('textArea1').innerHTML = coord1.join(', ');
+            [startX, startY] = startCoord;
+            document.getElementById('textArea1').innerHTML = startCoord.join(', ');
             mouse.startX = mouse.x;
             mouse.startY = mouse.y;
             element = document.createElement('div');
@@ -129,11 +129,10 @@ const initDraw = (canvas) => {
             canvas.style.cursor = "crosshair";
             endOneDraw = false;
         } else {
-            coord2 = [event.clientX, event.clientY];
-            document.getElementById("textArea2").innerHTML = coord2.join(', ');
-            [x2, y2] = coord2;
-            let offsetX = Math.abs(x1 - x2);
-            let offsetY = Math.abs(y1 - y2);
+            endCoord = [event.clientX, event.clientY];
+            document.getElementById("textArea2").innerHTML = endCoord.join(', ');
+            let offsetX = Math.abs(startX - endCoord[0]);
+            let offsetY = Math.abs(startY - endCoord[1]);
             document.getElementById("textArea3").innerHTML = `${offsetX}, ${offsetY}`;
             canvas.style.cursor = 'default';
             endOneDraw = true;
