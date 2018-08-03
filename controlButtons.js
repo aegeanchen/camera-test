@@ -70,11 +70,23 @@ function cameraSettings() {
     }
 }
 
-initDraw(document.getElementById('drawArea'));
+// use ES6 arrow function
+const initDraw = (canvas) => {
+    // Put variables on the top of the function scope
+    const mouse = {
+        x: 0,
+        y: 0,
+        startX: 0,
+        startY: 0
+    };
+    let element = null;
+    let endOneDraw = true;
+    let x1, y1, x2, y2, coord1, coord2;
 
-function initDraw(canvas) {
-    function setMousePosition(e) {
-        var ev = e || window.event; //Moz || IE
+    // Name: e or event? the style should be uniform
+    const setMousePosition = (event) => {
+        // always use let rather than var
+        let ev = event || window.event; //Moz || IE
         if (ev.pageX) { //Moz
             mouse.x = ev.pageX + window.pageXOffset;
             mouse.y = ev.pageY + window.pageYOffset;
@@ -84,18 +96,9 @@ function initDraw(canvas) {
         }
     };
 
-    var mouse = {
-        x: 0,
-        y: 0,
-        startX: 0,
-        startY: 0
-    };
-    var element = null;
-    var x1, y1, x2, y2, coor1, coor2;
-
-    canvas.onmousemove = function (e) {
-        setMousePosition(e);
-        if (element !== null) {
+    canvas.onmousemove = (event) => {
+        setMousePosition(event);
+        if (!endOneDraw) {
             element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
             element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
             element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x - 100 + 'px' : mouse.startX - 100 + 'px';
@@ -103,39 +106,40 @@ function initDraw(canvas) {
         }
     }
 
-    canvas.onclick = function (e) {
-        if (element !== null) {
-            element = null;
-            x2 = event.clientX;
-            y2 = event.clientY;
-            coor2 = x2 + ", " + y2;
-            document.getElementById("textArea2").innerHTML = coor2;
-            var coor1 = document.getElementById("textArea1").innerHTML;
-            var x1 = coor1.split(',')[0];
-            var y1 = coor1.split(',')[1];
-            var x = Math.abs(x1 - x2);
-            var y = Math.abs(y1 - y2);
-            document.getElementById("textArea3").innerHTML = x + ", " + y;
-            canvas.style.cursor = "default";
-            console.log("finished.");
-        } else {
-            // var removeElement = document.getElementsByClassName('rectangle');
-
-            console.log("begun.");
-            x1 = event.clientX;
-            y1 = event.clientY;
-            coor1 = x1 + ", " + y1;
-            document.getElementById("textArea1").innerHTML = coor1;
+    canvas.onclick = (event) => { 
+        if (endOneDraw) {
+            if (element) {
+                console.log('Clearing...');
+                canvas.removeChild(element);
+                element = null;
+                console.log('Cleared.');
+            }
+            console.log("Begin to draw...");
+            coord1 = [event.clientX, event.clientY];
+            // deconstructive assignment
+            [x1, y1] = coord1;
+            document.getElementById('textArea1').innerHTML = coord1.join(', ');
             mouse.startX = mouse.x;
             mouse.startY = mouse.y;
-            // var toRemove = document.getElem.
-
             element = document.createElement('div');
             element.className = 'rectangle';
-            element.style.left = mouse.x + 'px';
-            element.style.top = mouse.y + 'px';
+            element.style.left = `${mouse.x}px`;
+            element.style.top = `${mouse.y}px`
             canvas.appendChild(element);
             canvas.style.cursor = "crosshair";
+            endOneDraw = false;
+        } else {
+            coord2 = [event.clientX, event.clientY];
+            document.getElementById("textArea2").innerHTML = coord2.join(', ');
+            [x2, y2] = coord2;
+            let offsetX = Math.abs(x1 - x2);
+            let offsetY = Math.abs(y1 - y2);
+            document.getElementById("textArea3").innerHTML = `${offsetX}, ${offsetY}`;
+            canvas.style.cursor = 'default';
+            endOneDraw = true;
+            console.log("Finished.");
         }
     }
 }
+
+initDraw(document.getElementById('drawArea'));
