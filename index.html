@@ -13,11 +13,15 @@
   <div>
     <select id="videoSource"></select>
     <input type="range" min="11.0" max="18.9" value="15" class="slider" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
-
     <div id="videoBox">
       <video id="video" playsinline autoplay></video>
-      <canvas id="canvas" onmouseover="mousein()" onmouseout="mouseout()" onclick="changeText()"></canvas>
-      <!--<h1 onclick="changeText(this)">Click on this text!</h1>-->
+      <canvas id="canvas" onmouseover="mousein()" onmouseout="mouseout()" style="position: relative" ></canvas>
+      <div id="container" class="container" onmouseover="mousein()" onmouseout="mouseout()" style="position:absolute; display: none" >
+        <div class="row">
+          <div class="firstContainer" id="drawArea"></div>
+          <div class="secondContainer"></div>
+        </div>
+      </div>
       <div id="videoControls" onmouseover="mousein()" onmouseout="mouseout()">
         <div id="floatWindow" class="d-sm-flex align-items-stretch flex-row bd-highlight mb-3 justify-content-start">
           <!-- =============================== two direction =============================== -->
@@ -67,13 +71,21 @@
             <div class="output bg-secondary align-items-center bd-highlight">
               <span class="d-block p-2 text-white" id="textArea1"></span>
               <span class="d-block p-2 text-white" id="textArea2"></span>
+
+            </div>
+          </div>
+
+          <div class="p-2 bd-highlight">
+            <div class="output bg-secondary align-items-center bd-highlight">
               <span class="d-block p-2 text-white" id="textArea3"></span>
+
             </div>
           </div>
 
         </div>
       </div>
     </div>
+
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

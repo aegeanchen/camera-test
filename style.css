@@ -14,16 +14,8 @@ video {
   position: relative;
   display: block;
   z-index: 0;
-
 }
 
-/*#videoControls {*/
-  /*padding: 10px;*/
-  /*width: 100%;*/
-  /*z-index: 100;*/
-  /*position: relative;*/
-  /**/
-/*}*/
 
 #videoControls {
   width: 100%;
@@ -38,8 +30,25 @@ video {
 
 #floatWindow {
   background-color: rgba(46, 46, 46, 0.8);
-
 }
+.container {
+  position: relative;
+  top: 200px;
+  left: 100px;
+  z-index: 100;
+}
+.firstContainer {
+  background-color: lightpink;
+  height:200px;
+  width: 400px;
+}
+.secondContainer {
+  background-color: gray;
+  height: 200px;
+  width:200px;
+}
+
+
 
 #canvas2 {
   display:none;
@@ -49,14 +58,6 @@ video {
   position: relative;
   display: block; */
 }
-
-/* image {
-  max-width: 100%;
-  height: auto;
-  position: relative;
-  display: block;
-} */
-
 
 .vertical-direction {
   position: relative;
@@ -123,4 +124,10 @@ input[type=range][aria-orientation=vertical]
   width: 8px;
   height: 86px;
   padding: 0 5px;
+}
+
+.rectangle {
+  border: 1px solid #000000;
+  position: absolute;
+  z-index: 200;
 }
