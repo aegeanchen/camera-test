@@ -104,8 +104,8 @@ const initDraw = (canvas) => {
             const offsetTop = parseInt($('.container').css('top'));
             element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
             element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
-            element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x - offsetLeft + 'px' : mouse.startX - 100 + 'px';
-            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y - offsetTop + 'px' : mouse.startY - 100 + 'px';
+            element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x - offsetLeft + 'px' : mouse.startX - offsetLeft + 'px';
+            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y - offsetTop + 'px' : mouse.startY - offsetTop + 'px';
         }
     }
 
