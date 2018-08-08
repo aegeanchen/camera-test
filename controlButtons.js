@@ -86,11 +86,11 @@ const initDraw = (canvas) => {
     // Name: e or event? the style should be uniform
     const setMousePosition = (event) => {
         // always use let rather than var
-        let ev = event || window.event; //Moz || IE
-        if (ev.pageX) { //Moz
+        let ev = event || window.event;  // Moz || IE
+        if (ev.pageX) {  // Moz
             mouse.x = ev.pageX + window.pageXOffset;
             mouse.y = ev.pageY + window.pageYOffset;
-        } else if (ev.clientX) { //IE
+        } else if (ev.clientX) { // IE
             mouse.x = ev.clientX + document.body.scrollLeft;
             mouse.y = ev.clientY + document.body.scrollTop;
         }
@@ -102,7 +102,7 @@ const initDraw = (canvas) => {
             element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
             element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
             element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x - 100 + 'px' : mouse.startX - 100 + 'px';
-            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y - 200 + 'px' : mouse.startY - 200 + 'px';
+            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y - 100 + 'px' : mouse.startY - 100 + 'px';
         }
     }
 
