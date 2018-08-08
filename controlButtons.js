@@ -79,6 +79,7 @@ const initDraw = (canvas) => {
         startX: 0,
         startY: 0
     };
+    
     let element = null;
     let endOneDraw = true;
     let startX, startY, startCoord, endCoord;
@@ -99,10 +100,12 @@ const initDraw = (canvas) => {
     canvas.onmousemove = (event) => {
         setMousePosition(event);
         if (!endOneDraw) {
+            const offsetLeft = parseInt($('.container').css('left'));
+            const offsetTop = parseInt($('.container').css('top'));
             element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
             element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
-            element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x - 100 + 'px' : mouse.startX - 100 + 'px';
-            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y - 100 + 'px' : mouse.startY - 100 + 'px';
+            element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x - offsetLeft + 'px' : mouse.startX - 100 + 'px';
+            element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y - offsetTop + 'px' : mouse.startY - 100 + 'px';
         }
     }
 
