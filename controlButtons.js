@@ -106,17 +106,17 @@ const initDraw = (canvas) => {
         }
     }
 
-    canvas.onclick = (event) => { 
+    canvas.onclick = (event) => {
+        let top = parseInt($('.container').css( "top" ).split('px')[0]);
+        let left = parseInt($('.container').css( "left" ).split('px')[0]);
         if (endOneDraw) {
+
             if (element) {
-                console.log('Clearing...');
                 canvas.removeChild(element);
                 element = null;
-                console.log('Cleared.');
             }
-            console.log("Begin to draw...");
-            startCoord = [event.clientX, event.clientY];
-            // deconstructive assignment
+
+            startCoord = [event.clientX - left, event.clientY - top];
             [startX, startY] = startCoord;
             document.getElementById('textArea1').innerHTML = startCoord.join(', ');
             mouse.startX = mouse.x;
@@ -124,21 +124,57 @@ const initDraw = (canvas) => {
             element = document.createElement('div');
             element.className = 'rectangle';
             element.style.left = `${mouse.x}px`;
-            element.style.top = `${mouse.y}px`
+            element.style.top = `${mouse.y}px`;
             canvas.appendChild(element);
             canvas.style.cursor = "crosshair";
             endOneDraw = false;
         } else {
-            endCoord = [event.clientX, event.clientY];
+            endCoord = [event.clientX - left, event.clientY - top];
             document.getElementById("textArea2").innerHTML = endCoord.join(', ');
             let offsetX = Math.abs(startX - endCoord[0]);
             let offsetY = Math.abs(startY - endCoord[1]);
             document.getElementById("textArea3").innerHTML = `${offsetX}, ${offsetY}`;
             canvas.style.cursor = 'default';
             endOneDraw = true;
-            console.log("Finished.");
         }
     }
 }
 
 initDraw(document.getElementById('drawArea'));
+
+function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
+
+function rgbToHex(R,G,B) {return "#" + toHex(R)+toHex(G)+toHex(B)}
+function toHex(n) {
+    n = parseInt(n,10);
+    if (isNaN(n)) return "00";
+    n = Math.max(0,Math.min(n,255));
+    return "0123456789ABCDEF".charAt((n-n%16)/16)
+        + "0123456789ABCDEF".charAt(n%16);
+}
+
+function colorMix(color1,color2,value){
+    var color1Value = value;
+    var color2Value = 100 - value;
+
+    var colorR = ((color1Value/100) * hexToR(color1)) +
+        ((color2Value/100) * hexToR(color2));
+    var colorB = ((color1Value/100) * hexToB(color1)) +
+        ((color2Value/100) * hexToB(color2));
+    var colorG = ((color1Value/100) * hexToG(color1)) +
+        ((color2Value/100) * hexToG(color2));
+
+    return rgbToHex(colorR,colorG,colorB);
+}
+
+$(document).ready(function(){
+    $(".slider").on("change mousemove", function() {
+        var color2 = "#a1dffc";
+        var color1 = "#f9d475";
+        $(this).css("background-color",colorMix(color1,color2,this.value));
+    });
+});
+

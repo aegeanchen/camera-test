@@ -12,14 +12,17 @@
 
   <div>
     <select id="videoSource"></select>
-    <input type="range" min="11.0" max="18.9" value="15" class="slider" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
+    <input type="range" min="11.0" max="18.9" value="15" class="slider1" id="wbRange" oninput="applyConstraints(this.valueAsNumber)" step="0.1" disabled></input>
     <div id="videoBox">
       <video id="video" playsinline autoplay></video>
       <canvas id="canvas" onmouseover="mousein()" onmouseout="mouseout()" style="position: relative" ></canvas>
       <div id="container" class="container" onmouseover="mousein()" onmouseout="mouseout()" style="position:absolute; display: none" >
         <div class="row">
-          <div class="firstContainer" id="drawArea"></div>
-          <div class="secondContainer"></div>
+          <div class="firstContainer" id="drawArea">
+            <ul class="ruler"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li></ul>
+            <ul class="ruler2"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+            <ul class="ruler3"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+          </div>
         </div>
       </div>
       <div id="videoControls" onmouseover="mousein()" onmouseout="mouseout()">
@@ -31,7 +34,7 @@
           <!-- =============================== four direction =============================== -->
           <div class="p-2 bd-highlight">
             <div class="direction bg-secondary align-items-center bd-highlight">
-              <button class="btn btn-secondary top_direction btn-large"><i class="fas fa-sort-up"></i></button>
+              <button class="btn btn-secondary top_direction btn-large"><i class="fas fa-arrow-circle-up"></i></button>
               <button class="btn btn-secondary left_direction btn-large"><i class="fas fa-caret-left"></i></button>
               <button class="btn btn-secondary bottom_direction btn-large"><i class="fas fa-sort-down"></i></button>
               <button class="btn btn-secondary right_direction btn-large"><i class="fas fa-caret-right"></i></button>
@@ -48,18 +51,12 @@
           <!-- =============================== picture settings =============================== -->
           <div class="btn-group-vertical p-2 bd-highlight" role="group" aria-label="Basic example" id="pictureSettings">
             <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
-            <button type="button" class="btn btn-secondary">white balance  <input type="range" min="0" max="100" value="50" step="1"></button>
-            <button type="button" class="btn btn-secondary">brightness  <input type="range" min="0" max="100" value="50" step="1"></button>
-            <button type="button" class="btn btn-secondary">contrast  <input type="range" min="0" max="100" value="50" step="1"></button>
+            <button type="button" class="btn btn-secondary"><i class="fas fa-lightbulb"></i>   <input class="slider" type="range" aria-orientation="whiteBalance" min="0" max="100" value="50" step="1"></button>
+            <button type="button" class="btn btn-secondary"><i class="fas fa-sun"></i>   <input type="range" min="0" max="100" value="50" step="1"></button>
+            <button type="button" class="btn btn-secondary"><i class="fas fa-adjust"></i>   <input type="range" min="0" max="100" value="50" step="1"></button>
             </div>
           </div>
           <!-- =============================== picture settings =============================== -->
-          <!--<div class="collapse p-2 bd-highlight" id="cameraSettings">-->
-            <!--<div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >-->
-              <!--<div class="p-2 bd-highlight" href="#">choose camera</div>-->
-              <!--<div class="p-2 bd-highlight" href="#">camera settings</div>-->
-            <!--</div>-->
-          <!--</div>-->
           <div class="btn-group-vertical p-2 bd-highlight" role="group" aria-label="Basic example" id="cameraSettings">
             <div class="d-flex flex-column bd-highlight mb-3 bg-secondary" >
               <button type="button" class="btn btn-secondary">choose camera</button>
