@@ -210,7 +210,9 @@ input[type=range][aria-orientation=vertical]
 }
 
 
-
+input[type=range]:focus {
+  outline: none;
+}
 
 .slider{
   -webkit-appearance: none;
@@ -222,17 +224,21 @@ input[type=range][aria-orientation=vertical]
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 23px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   border: 0;
   /*background: url('contrasticon.png');*/
+  background: #ffffff; 
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 23px;
-  height: 25px;
+  width: 14px;
+  height: 14px;
   border: 0;
   /*background: url('contrasticon.png');*/
+  background: #ffffff; 
+  border-radius: 50%;
   cursor: pointer;
 }
